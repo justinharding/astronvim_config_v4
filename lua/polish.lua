@@ -17,3 +17,4 @@
 --   },
 -- }
 vim.g.neovide_scale_factor = 0.8
+vim.g.csv_nomap_space = 1
