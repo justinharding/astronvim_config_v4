@@ -1,4 +1,4 @@
-if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
+-- if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
 
 -- AstroCore provides a central place to modify mappings, vim options, autocommands, and more!
 -- Configuration documentation can be found with `:h astrocore`
@@ -13,11 +13,11 @@ return {
     -- Configure core features of AstroNvim
     features = {
       large_buf = { size = 1024 * 500, lines = 10000 }, -- set global limits for large files for disabling features like treesitter
-      autopairs = true, -- enable autopairs at start
-      cmp = true, -- enable completion at start
-      diagnostics_mode = 3, -- diagnostic mode on start (0 = off, 1 = no signs/virtual text, 2 = no virtual text, 3 = on)
-      highlighturl = true, -- highlight URLs at start
-      notifications = true, -- enable notifications at start
+      autopairs = true,                                 -- enable autopairs at start
+      cmp = true,                                       -- enable completion at start
+      diagnostics_mode = 3,                             -- diagnostic mode on start (0 = off, 1 = no signs/virtual text, 2 = no virtual text, 3 = on)
+      highlighturl = true,                              -- highlight URLs at start
+      notifications = true,                             -- enable notifications at start
     },
     -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
     diagnostics = {
@@ -26,14 +26,14 @@ return {
     },
     -- vim options can be configured here
     options = {
-      opt = { -- vim.opt.<key>
+      opt = {                  -- vim.opt.<key>
         relativenumber = true, -- sets vim.opt.relativenumber
-        number = true, -- sets vim.opt.number
-        spell = false, -- sets vim.opt.spell
-        signcolumn = "auto", -- sets vim.opt.signcolumn to auto
-        wrap = false, -- sets vim.opt.wrap
+        number = true,         -- sets vim.opt.number
+        spell = false,         -- sets vim.opt.spell
+        signcolumn = "auto",   -- sets vim.opt.signcolumn to auto
+        wrap = false,          -- sets vim.opt.wrap
       },
-      g = { -- vim.g.<key>
+      g = {                    -- vim.g.<key>
         -- configure global vim variables (vim.g)
         -- NOTE: `mapleader` and `maplocalleader` must be set in the AstroNvim opts or before `lazy.setup`
         -- This can be found in the `lua/lazy_setup.lua` file
@@ -47,8 +47,8 @@ return {
         -- second key is the lefthand side of the map
 
         -- navigate buffer tabs with `H` and `L`
-        L = { function() require("astrocore.buffer").nav(vim.v.count1) end, desc = "Next buffer" },
-        H = { function() require("astrocore.buffer").nav(-vim.v.count1) end, desc = "Previous buffer" },
+        -- L = { function() require("astrocore.buffer").nav(vim.v.count1) end, desc = "Next buffer" },
+        -- H = { function() require("astrocore.buffer").nav(-vim.v.count1) end, desc = "Previous buffer" },
 
         -- mappings seen under group name "Buffer"
         ["<Leader>bD"] = {
@@ -64,6 +64,27 @@ return {
         ["<Leader>b"] = { desc = "Buffers" },
         -- quick save
         -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
+
+        ["gh"] = { "<cmd>ClangdSwitchSourceHeader<cr>", desc = "Swap source/header" },
+        ["]q"] = { "<cmd>cn<cr>", desc = "Next quickfix message" },
+        ["[q"] = { "<cmd>cp<cr>", desc = "Previous quickfix message" },
+        ["gz"] = { name = "Surround" },
+        ["<Leader>bn"] = { "<cmd>file!<cr>", desc = "Display file name" },
+        [",,"] = { "<cmd>b#<cr>", desc = "Alternate buffer" },
+        ["<Leader>uH"] = { "<cmd>set list!<cr>", desc = "Toggle hidden characters" },
+        ["<Leader>a"] = {
+          name = "ChatGPT",
+          e = {
+            function() chatgpt.edit_with_instructions() end,
+            "Edit with instructions",
+          },
+          -- prefix = "<leader>",
+          -- mode = "v",
+        },
+        -- View treesitter highlight groups
+        ["<Leader>k"] = { ":TSHighlightCapturesUnderCursor<cr>", desc = "View Highlight Group" },
+        -- Search highlight groups
+        ["<Leader>fg"] = { "<cmd>Telescope highlights<cr>", desc = "Highlight groups" },
       },
       t = {
         -- setting a mapping to false will disable it
