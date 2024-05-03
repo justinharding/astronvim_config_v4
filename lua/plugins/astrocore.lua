@@ -1,4 +1,4 @@
--- if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
+if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
 
 -- AstroCore provides a central place to modify mappings, vim options, autocommands, and more!
 -- Configuration documentation can be found with `:h astrocore`
@@ -47,13 +47,9 @@ return {
         -- second key is the lefthand side of the map
 
         -- navigate buffer tabs with `H` and `L`
-        -- L = { function() require("astrocore.buffer").nav(vim.v.count1) end, desc = "Next buffer" },
-        -- H = { function() require("astrocore.buffer").nav(-vim.v.count1) end, desc = "Previous buffer" },
+        L = { function() require("astrocore.buffer").nav(vim.v.count1) end, desc = "Next buffer" },
+        H = { function() require("astrocore.buffer").nav(-vim.v.count1) end, desc = "Previous buffer" },
 
-        ["<leader>fB"] = {
-          function() require("telescope.builtin").buffers { sort_mru = true } end,
-          desc = "Buffers mru list",
-        },
         -- mappings seen under group name "Buffer"
         ["<Leader>bD"] = {
           function()
@@ -68,27 +64,6 @@ return {
         ["<Leader>b"] = { desc = "Buffers" },
         -- quick save
         -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
-
-        ["gh"] = { "<cmd>ClangdSwitchSourceHeader<cr>", desc = "Swap source/header" },
-        ["]q"] = { "<cmd>cn<cr>", desc = "Next quickfix message" },
-        ["[q"] = { "<cmd>cp<cr>", desc = "Previous quickfix message" },
-        ["gz"] = { name = "Surround" },
-        ["<Leader>bn"] = { "<cmd>file!<cr>", desc = "Display file name" },
-        [",,"] = { "<cmd>b#<cr>", desc = "Alternate buffer" },
-        ["<Leader>uH"] = { "<cmd>set list!<cr>", desc = "Toggle hidden characters" },
-        ["<Leader>a"] = {
-          name = "ChatGPT",
-          e = {
-            function() chatgpt.edit_with_instructions() end,
-            "Edit with instructions",
-          },
-          -- prefix = "<leader>",
-          -- mode = "v",
-        },
-        -- View treesitter highlight groups
-        ["<Leader>k"] = { ":TSHighlightCapturesUnderCursor<cr>", desc = "View Highlight Group" },
-        -- Search highlight groups
-        ["<Leader>fg"] = { "<cmd>Telescope highlights<cr>", desc = "Highlight groups" },
       },
       t = {
         -- setting a mapping to false will disable it
